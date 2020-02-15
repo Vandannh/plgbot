@@ -1,5 +1,5 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
-var auth = require('./auth.json');
+require('dotenv').config();
 
 // Initialize Discord Bot
 var client = new Client({
@@ -38,4 +38,4 @@ client.on('message', async msg => {
      }
 });
 
-client.login(auth.token);
+client.login(process.env.DISCORD_TOKEN);
