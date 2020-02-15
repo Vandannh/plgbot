@@ -1,0 +1,12 @@
+{
+  "name": "plgbot",
+  "version": "2.0.0",
+  "description": "PLGbot now migrated to Node.js",
+  "main": "main",
+  "author": "Vandann",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "discord.js": "^11.5.1",
+    "fs": "0.0.1-security"
+  }
+}
