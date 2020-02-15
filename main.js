@@ -1,4 +1,5 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
+const fs = require('fs');
 require('dotenv').config();
 
 // Initialize Discord Bot
@@ -8,6 +9,8 @@ var client = new Client({
 
 client.commands = new Collection();
 client.aliases = new Collection();
+
+client.categories = fs.readdirSync('./commands/');
 
 ["command"].forEach(handler => {
     require(`./handler/${handler}`)(client);
