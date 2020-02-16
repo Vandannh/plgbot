@@ -1,3 +1,4 @@
+const fs = require('fs');
 module.exports = {
     name: 'horn',
     category: 'voice',
@@ -8,7 +9,7 @@ module.exports = {
                 .then(connection => {
                     const dispatcher = connection.playFile(require('path').join(__dirname, '../../files/airhorn.mp3'));
                     dispatcher.on('start', start => {
-                        dispatcher.setVolume(1);
+                        dispatcher.setVolume(0.5);
                     })
                     dispatcher.on('end', end => {
                         message.member.voiceChannel.leave();
