@@ -4,6 +4,6 @@ module.exports = {
     category: 'info',
     description: 'Returns latency to the API',
     run: async (client, message, args) => {
-        const msg = await message.channel.send(`Discord ping: ${client.ping}ms`);
+        message.channel.send(`Discord ping: ${client.ping}ms`);
     }
 }
