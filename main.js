@@ -1,7 +1,5 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
 const fs = require('fs');
-const axios = require('axios');
-const xmlparser = require('xmldoc');
 require('dotenv').config();
 
 // Initialize Discord Bot
