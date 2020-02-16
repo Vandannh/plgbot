@@ -29,24 +29,21 @@ client.on('ready', function (evt) {
 
 
 client.on('message', async msg => {
-    if (msg.content.startsWith('.')) {
-        
-        if(msg.author.bot) return;
-        if(!msg.content.startsWith('.')) return;
-        if(!msg.guild) return;
-        if(!msg.member) msg.member = await msg.guild.fetchMember(msg);
-        
-        var args = msg.content.substring(1).split(/ +/);
-        var cmd = args.shift().toLowerCase();
-        
-        if(cmd.length === 0) return;
-        let command = client.commands.get(cmd);
-        if(!command) command = client.commands.get(client.aliases.get(cmd));
+    if(msg.author.bot) return;
+    if(!msg.content.startsWith('.')) return;
+    if(!msg.guild) return;
+    if(!msg.member) msg.member = await msg.guild.fetchMember(msg);
+    
+    var args = msg.content.substring(1).split(/ +/);
+    var cmd = args.shift().toLowerCase();
+    
+    if(cmd.length === 0) return;
+    let command = client.commands.get(cmd);
+    if(!command) command = client.commands.get(client.aliases.get(cmd));
 
-        if(command) {
-            command.run(client, msg, args);
-        }
-     }
+    if(command) {
+        command.run(client, msg, args);
+    }
 });
 
 client.login(process.env.DISCORD_TOKEN);
