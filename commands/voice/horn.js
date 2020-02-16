@@ -6,7 +6,7 @@ module.exports = {
         if(message.member.voiceChannel) {
             message.member.voiceChannel.join()
                 .then(connection => {
-                    const dispatcher = connection.playFile('../../files/airhorn.mp3');
+                    const dispatcher = connection.playFile(require('path').join(__dirname, '../../files/airhorn.mp3'));
                     dispatcher.on('end', end => {
                         message.member.voiceChannel.leave();
                     });
