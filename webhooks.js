@@ -24,7 +24,7 @@ module.exports = {
                     if(type == "push") {
                         let commits = "**> Commits:**\n";
                         data.commits.forEach(commit => {
-                            commits += "**Commit message:** " + commit.message + "\n";
+                            commits += "**> Commit message:** " + commit.message + "\n";
                         });
                         const embed = new RichEmbed()
                             .setFooter('Author: ' + data.pusher.name)
