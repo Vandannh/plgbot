@@ -1,5 +1,5 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
-// const { runWebhook } = require('./webhooks.js');
+const { runWebhook } = require('./webhooks.js');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -8,15 +8,18 @@ var client = new Client({
     disableEveryone : true
 });
 
+// Collections for loading commands to the bot
 client.commands = new Collection();
 client.aliases = new Collection();
-
 client.categories = fs.readdirSync('./commands/');
 
+
+// Import each command as a file
 ["command"].forEach(handler => {
     require(`./handler/${handler}`)(client);
 })
 
+// Executed when bot is logged in
 client.on('ready', function (evt) {
     console.log(`Logged in as ${client.user.username}`);
     client.user.setPresence({
@@ -27,10 +30,10 @@ client.on('ready', function (evt) {
         }
     })
 
-    // runWebhook(client.channels.get('679405765768904731'));
+    runWebhook(client.channels.get('679405765768904731'));
 });
 
-
+// Message handler
 client.on('message', async msg => {
     if(msg.author.bot) return;
     if(!msg.content.startsWith('.')) return;
