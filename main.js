@@ -47,6 +47,8 @@ client.on('message', async msg => {
     }
 });
 
-runWebhook();
+
+
+runWebhook(client.channels.get('679405765768904731'));
 
 client.login(process.env.DISCORD_TOKEN);
