@@ -1,5 +1,5 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
-const { runWebhook } = require('webhooks.js');
+const { runWebhook } = require('./webhooks.js');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -47,6 +47,6 @@ client.on('message', async msg => {
     }
 });
 
-
+runWebhook();
 
 client.login(process.env.DISCORD_TOKEN);
