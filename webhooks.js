@@ -12,7 +12,7 @@ module.exports = {
             req.on('data', chunk => {
                 let sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
                 if (req.headers['x-hub-signature'] == sig) {
-                    exec('cd /home/pi/plgbot && git pull')
+                    
 
                     data.push(chunk)
                 }
@@ -22,21 +22,21 @@ module.exports = {
 
                 let type = req.headers['x-github-event'];
                     if(type == "push") {
-                        let commits = "**Commits:**\n";
+                        let commits = "**>Commits:**\n";
                         data.commits.forEach(commit => {
-                            commits += "**Commit message: **" + commit.message + "\n";
+                            commits += "**Commit message:** " + commit.message + "\n";
                         });
                         const embed = new RichEmbed()
-                            .setFooter(data.pusher.name)
-                            .setColor('#000000')
+                            .setFooter('Author: ' + data.pusher.name)
+                            .setColor('#ffffff')
                             .addField('New push to ' + data.repository.html_url, commits)
                             .setTimestamp()
                         
                         channel.send(embed);
+                        exec('cd /home/pi/plgbot && git pull')
                     }
             });
             res.end();
         }).listen(8080);
     }
-
 }
