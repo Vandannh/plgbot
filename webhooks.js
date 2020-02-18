@@ -10,8 +10,8 @@ module.exports = {
                 let sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
                 if (req.headers['x-hub-signature'] == sig) {
                     exec('cd' + '/home/pi/plgbot');
-                    console.log('Github updated');
-                    channel.send('Github update');
+                    console.log(channel.id);
+                    // channel.send('Github update');
                 }
             });
             res.end();
