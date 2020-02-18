@@ -1,7 +1,7 @@
 const fs = require('fs');
 module.exports = {
     name: 'horn',
-    aliases: ['gottem', 'vuvuzela', 'airhorn'],
+    aliases: ['gotem', 'vuvuzela', 'airhorn'],
     category: 'voice',
     description: 'Plays airhorn.mp3 in a voice channel',
     run: async(client, message, args) => {
