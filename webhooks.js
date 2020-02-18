@@ -8,11 +8,12 @@ module.exports = {
         http.createServer(function(req, res) {
             req.on('data', function(chunk) {
                 let sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
-
+                console.log(sig);
+                console.log(req.headers['x-hub-signature']);
                 if (req.headers['x-hub-signature'] == sig) {
                     exec('cd' + '/home/pi/plgbot');
                     console.log('Github updated');
-                    
+
                 }
             });
             res.end();
