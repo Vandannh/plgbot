@@ -11,7 +11,6 @@ module.exports = {
                 if (req.headers['x-hub-signature'] == sig) {
                     exec('cd /home/pi/plgbot && git pull');
                     console.log(channel.id);
-                    // channel.send('Github update');
                 }
             });
             res.end();
