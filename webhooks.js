@@ -9,7 +9,7 @@ module.exports = {
             req.on('data', function(chunk) {
                 let sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
                 if (req.headers['x-hub-signature'] == sig) {
-                    exec('cd' + '/home/pi/plgbot');
+                    exec('cd /home/pi/plgbot && git pull');
                     console.log(channel.id);
                     // channel.send('Github update');
                 }
