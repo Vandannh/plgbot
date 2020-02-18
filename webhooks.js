@@ -12,7 +12,7 @@ module.exports = {
             req.on('data', chunk => {
                 let sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
                 if (req.headers['x-hub-signature'] == sig) {
-                    
+                    exec('cd /home/pi/plgbot && git pull')
 
                     data.push(chunk)
                 }
@@ -22,7 +22,7 @@ module.exports = {
 
                 let type = req.headers['x-github-event'];
                     if(type == "push") {
-                        let commits = "**>Commits:**\n";
+                        let commits = "**> Commits:**\n";
                         data.commits.forEach(commit => {
                             commits += "**Commit message:** " + commit.message + "\n";
                         });
@@ -33,7 +33,7 @@ module.exports = {
                             .setTimestamp()
                         
                         channel.send(embed);
-                        exec('cd /home/pi/plgbot && git pull')
+                        
                     }
             });
             res.end();
