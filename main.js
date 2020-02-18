@@ -1,5 +1,5 @@
 const { Client, RichEmbed, Collection } = require('discord.js');
-const { runWebhook } = require('./webhooks.js');
+// const { runWebhook } = require('./webhooks.js');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -27,7 +27,7 @@ client.on('ready', function (evt) {
         }
     })
 
-    runWebhook(client.channels.get('679405765768904731'));
+    // runWebhook(client.channels.get('679405765768904731'));
 });
 
 
