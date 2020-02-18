@@ -12,6 +12,7 @@ module.exports = {
                 if (req.headers['x-hub-signature'] == sig) {
                     exec('cd' + '/home/pi/plgbot');
                     console.log('Github updated');
+                    
                 }
             });
             res.end();
