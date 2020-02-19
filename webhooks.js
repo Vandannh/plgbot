@@ -13,7 +13,11 @@ module.exports = {
             req.on('data', chunk => {
                 sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
                 
-                data = JSON.parse(chunk);
+                try {
+                    data = JSON.parse(chunk);
+                } catch (e) {
+                    console.error("JSON error: " + e);
+                }
 
                 if (req.headers['x-hub-signature'] === sig && data.repository.full_name && data.ref === 'refs/heads/master') {
                     let type = req.headers['x-github-event'];
