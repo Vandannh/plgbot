@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { convertSeconds } = require('../../functions.js');
 // Returns the uptime of the raspberry pi
 module.exports = {
     name: "uptime",
@@ -10,7 +11,10 @@ module.exports = {
                 return console.log(err);
             }
             let time = parseFloat(data.split()[0]);
-            message.channel.send(new Date(time * 1000).toISOString().substr(11, 8));
+            
+            message.channel.send(convertSeconds(time));
         })
     }
+
+    
 }
