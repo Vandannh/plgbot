@@ -15,27 +15,27 @@ module.exports = {
                 
                 try {
                     data = JSON.parse(chunk);
+                    if (req.headers['x-hub-signature'] === sig && data.repository.full_name && data.ref === 'refs/heads/master') {
+                        let type = req.headers['x-github-event'];
+                        let commits = "";
+                        data.commits.forEach(commit => {
+                            commits += "**> Commit message:** " + commit.message + "\n";
+                        });
+                        const embed = new RichEmbed()
+                        .setFooter('Author: ' + data.pusher.name)
+                        .setColor('#ffffff')
+                        .addField('New push to ' + data.repository.html_url, commits)
+                        .setTimestamp()
+                        
+                        channel.send(embed);
+                        
+                        exec('cd /home/pi/plgbot && git pull');
+                        
+                    }
                 } catch (e) {
                     console.error("JSON error: " + e);
                 }
 
-                if (req.headers['x-hub-signature'] === sig && data.repository.full_name && data.ref === 'refs/heads/master') {
-                    let type = req.headers['x-github-event'];
-                    let commits = "";
-                    data.commits.forEach(commit => {
-                        commits += "**> Commit message:** " + commit.message + "\n";
-                    });
-                    const embed = new RichEmbed()
-                    .setFooter('Author: ' + data.pusher.name)
-                    .setColor('#ffffff')
-                    .addField('New push to ' + data.repository.html_url, commits)
-                    .setTimestamp()
-                    
-                    channel.send(embed);
-                    
-                    exec('cd /home/pi/plgbot && git pull');
-                    
-                }
             })
             res.end();
         }).listen(8080);
