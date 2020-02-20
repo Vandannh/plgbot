@@ -1,3 +1,4 @@
+// Returns a random number between 1-100 or higher if specified.
 module.exports = {
     name: 'roll',
     aliases: ['random', 'number', 'rng'],

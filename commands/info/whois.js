@@ -2,6 +2,7 @@ const { getMember, formatDate } = require('../../functions.js');
 const { RichEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
 
+// Gives information about the user specified in the argument
 module.exports = {
     name: 'whois',
     aliases: ['who', 'userinfo', 'user'],

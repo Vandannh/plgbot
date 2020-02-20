@@ -1,4 +1,5 @@
 const fs = require('fs');
+// Plays an airhorn sound in the voicechannel
 module.exports = {
     name: 'horn',
     aliases: ['gotem', 'vuvuzela', 'airhorn'],

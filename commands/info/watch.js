@@ -1,3 +1,4 @@
+// Prints watch2gether link in chat
 module.exports = {
     name: 'watch',
     aliases: ['watch', 'watch2gether'],

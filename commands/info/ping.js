@@ -1,3 +1,4 @@
+// Returns the latency from the bot to the discord servers
 module.exports = {
     name: 'ping',
     aliases: ['ping', 'ms'],

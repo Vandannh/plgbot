@@ -4,7 +4,7 @@ const exec = require('child_process').exec;
 const { RichEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
 require('dotenv').config;
-
+// Handles webhooks coming from github whenever a push is made to the plgbot repository
 module.exports = {
     runWebhook: function(channel) {
         http.createServer(function(req, res) {

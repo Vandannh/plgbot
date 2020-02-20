@@ -1,3 +1,4 @@
+// Returns a discord invite to the server
 module.exports = {
     name: 'invite',
     aliases: ['invite'],

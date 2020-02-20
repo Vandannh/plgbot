@@ -1,4 +1,5 @@
 module.exports = {
+    // Finds a member in the discord server via a mention or by name
     getMember: function(message, toFind = '') {
         toFind = toFind.toLowerCase();
 

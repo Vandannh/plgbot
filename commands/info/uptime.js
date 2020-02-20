@@ -1,4 +1,5 @@
 const fs = require('fs');
+// Returns the uptime of the raspberry pi
 module.exports = {
     name: "uptime",
     category: "info",
@@ -9,8 +10,7 @@ module.exports = {
                 return console.log(err);
             }
             let time = parseFloat(data.split()[0]);
-            time = new Date(time*1000);
-            message.channel.send(time.getUTCHours() + ':' + time.getUTCMinutes() + ':' + time.getUTCSeconds());
+            message.channel.send(new Date(time * 1000).toISOString().substr(11, 8));
         })
     }
 }
