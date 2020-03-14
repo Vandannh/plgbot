@@ -33,6 +33,36 @@ client.on('ready', function (evt) {
     runWebhook(client.channels.get('679405765768904731'));
 });
 
+client.on('voiceStateUpdate', async function(oldState, newState) {
+    
+    let oldC = oldState.voiceChannelID;
+    let newC = newState.voiceChannelID;
+    let event = "";
+    let channel = "";
+    if(!newC && oldC != null) {
+        event = "left channel:";
+        channel = oldState.voiceChannel.name;
+    } else if(!oldC && newC != null) {
+        event = "joined channel:";
+        channel = newState.voiceChannel.name;
+    } else if(oldC != newC && oldC != null && newC != null) {
+        event = "changed channel:";
+        channel = oldState.voiceChannel.name + " -> " + newState.voiceChannel.name;  
+    }
+
+    if(event != "") {
+        console.log(event);
+        console.log(channel);
+
+        let embed = new RichEmbed()
+            .setThumbnail(newState.user.displayAvatarURL)
+            .setColor(newState.user.displayHexColor === '#000000' ? '#ffffff' : newState.user.displayHexColor)
+            .addField('**' + newState.user.username + " " + event + '**', channel, true)
+            .setTimestamp()
+        client.channels.get('688366821568544768').send(embed);
+    }
+})
+
 // Message handler
 client.on('message', async msg => {
     if(msg.author.bot) return;

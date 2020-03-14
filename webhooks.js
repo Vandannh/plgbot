@@ -2,7 +2,6 @@ let http = require('http');
 let crypto = require('crypto');
 const exec = require('child_process').exec;
 const { RichEmbed } = require('discord.js');
-const { stripIndents } = require('common-tags');
 require('dotenv').config;
 // Handles webhooks coming from github whenever a push is made to the plgbot repository
 module.exports = {
@@ -33,7 +32,7 @@ module.exports = {
                         
                     }
                 } catch (e) {
-                    console.error("JSON error: " + e);
+                    console.error("Webhook error: " + e);
                 }
 
             })

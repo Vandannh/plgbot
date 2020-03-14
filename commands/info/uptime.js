@@ -10,7 +10,7 @@ module.exports = {
             if(err) {
                 return console.log(err);
             }
-            let time = parseFloat(data.split()[0]);
+            const time = parseFloat(data.split()[0]);
             
             message.channel.send(convertSeconds(time));
         })
