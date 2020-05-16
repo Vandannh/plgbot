@@ -36,6 +36,9 @@ module.exports = {
                 }
 
             })
+            req.on('error', function(err) {
+                console.error(err);
+            })
             res.end();
         }).listen(8080);
     }
