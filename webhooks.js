@@ -27,7 +27,6 @@ module.exports = {
                         .setTimestamp()
                         
                         channel.send(embed);
-                        
                         exec('cd /home/pi/plgbot && git pull');
                     }
                 } catch (e) {
