@@ -29,12 +29,10 @@ module.exports = {
                         channel.send(embed);
                         
                         exec('cd /home/pi/plgbot && git pull');
-                        
                     }
                 } catch (e) {
                     console.error("Webhook error: " + e);
                 }
-
             })
             req.on('error', function(err) {
                 console.error(err);
