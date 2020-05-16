@@ -18,7 +18,7 @@ module.exports = {
                         let type = req.headers['x-github-event'];
                         let commits = "";
                         data.commits.forEach(commit => {
-                            commits += "**> Commit message:** " + commit.message + "\n";
+                            commits += "**> Commit message:** " + commit.message + "\n" + commit.url + "\n";
                         });
                         const embed = new RichEmbed()
                         .setFooter('Author: ' + data.pusher.name)
