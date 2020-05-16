@@ -11,6 +11,7 @@ module.exports = {
             let sig = "";
             req.on('data', chunk => {
                 sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
+
                 
                 try {
                     data = JSON.parse(chunk);
