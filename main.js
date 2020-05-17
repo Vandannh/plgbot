@@ -84,7 +84,6 @@ client.on('message', async msg => {
 
 process.on('uncaughtException', function(err){
     console.log(err);
-    restartMyScript();  
-  });
+});
 
 client.login(process.env.DISCORD_TOKEN);
