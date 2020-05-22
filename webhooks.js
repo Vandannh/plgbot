@@ -11,10 +11,8 @@ module.exports = {
             let sig = "";
             req.on('data', chunk => {
                 sig = "sha1=" + crypto.createHmac('sha1', process.env.WEBHOOK_SECRET).update(chunk.toString()).digest('hex');
-
-                
-                try {
-                    data = JSON.parse(chunk);
+                parseData(chunk);
+                if(chunk != null) {
                     if (req.headers['x-hub-signature'] === sig && data.repository.full_name && data.ref === 'refs/heads/master') {
                         let type = req.headers['x-github-event'];
                         let commits = "";
@@ -30,14 +28,24 @@ module.exports = {
                         channel.send(embed);
                         exec('cd /home/pi/plgbot && git pull');
                     }
-                } catch (e) {
-                    console.error("Webhook error: " + e);
+                } else {
+                    console.log("JSON parse error.");
                 }
+
             })
             req.on('error', function(err) {
-                console.error(err);
+                console.error("Webhook error: \n" + err);
             })
             res.end();
         }).listen(8080);
+    },
+    parseData: function(json) {
+        var data;
+        try {
+            data = JSON.parse(json);
+        } catch(e) {
+            return null;
+        }
+        return data;
     }
 }
