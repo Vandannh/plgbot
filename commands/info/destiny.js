@@ -1,6 +1,6 @@
 //Sends the current destiny picture from the website
 const r = require('request');
-const $ = require('cheerio');
+const cheerio = require('cheerio');
 const url = 'https://www.niris.tv/blog/weekly-reset';
 module.exports = {
     name: 'destiny',
