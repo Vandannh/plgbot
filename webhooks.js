@@ -48,6 +48,7 @@ function parseData(json) {
     try {
         data = JSON.parse(json);
     } catch(e) {
+        console.error(e);
         return null;
     }
     return data;
