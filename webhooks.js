@@ -38,14 +38,15 @@ module.exports = {
             })
             res.end();
         }).listen(8080);
-    },
-    parseData: function(json) {
-        var data;
-        try {
-            data = JSON.parse(json);
-        } catch(e) {
-            return null;
-        }
-        return data;
     }
+}
+
+function parseData(json) {
+    var data;
+    try {
+        data = JSON.parse(json);
+    } catch(e) {
+        return null;
+    }
+    return data;
 }
