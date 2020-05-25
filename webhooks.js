@@ -27,6 +27,8 @@ module.exports = {
                         
                         channel.send(embed);
                         exec('cd /home/pi/plgbot && git pull');
+                        console.log("Exiting script for Github update");
+                        process.exitCode = 1;
                     }
                 } else {
                     console.log("JSON parse error.");
