@@ -13,7 +13,7 @@ module.exports= {
 // Sends all commands as a RichEmbed to the discord textchannel
 function getAll(client, message) {
     const embed = new RichEmbed()
-        .setColor("RANDOM")
+        .setColor("YELLOW")
 
     const commands = (category) => {
         return client.commands
