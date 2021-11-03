@@ -30,7 +30,7 @@ client.on('ready', function (evt) {
         }
     })
 
-    runWebhook(client.channels.get('679405765768904731'));
+   runWebhook(client.channels.get('679405765768904731'));
 });
 
 client.on('voiceStateUpdate', async function(oldState, newState) {
@@ -51,9 +51,8 @@ client.on('voiceStateUpdate', async function(oldState, newState) {
     }
 
     if(event != "") {
-        console.log(event);
-        console.log(channel);
-
+        console.log(newState.user.username + " " + event + " " + channel);
+        
         let embed = new RichEmbed()
             .setThumbnail(newState.user.displayAvatarURL)
             .setColor(newState.user.displayHexColor === '#000000' ? '#ffffff' : newState.user.displayHexColor)
@@ -84,7 +83,11 @@ client.on('message', async msg => {
 
 process.on('uncaughtException', function(err){
     console.log(err);
-    process.exit();
+    //process.exit();
+});
+
+client.on('error', (err) => {
+	console.log(err.message)
 });
 
 client.login(process.env.DISCORD_TOKEN);

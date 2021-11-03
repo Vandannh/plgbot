@@ -10,8 +10,7 @@ do
 
     if [[ $FAILS -gt 10 ]]
     then
-        echo "[$(date)] failed to many times. aborting ..."
-        exit 1
+        echo "[$(date)] failed 10 times..."
     fi
 
     echo "[$(date)] bot exited with code $EXIT. restarting ..."
