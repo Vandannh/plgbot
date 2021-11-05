@@ -1,5 +1,5 @@
 // Prints METAR in chat
-const https = require('https');
+const axios = require('axios');
 module.exports = {
     name: 'metar',
     aliases: ['metar'],
@@ -12,21 +12,29 @@ module.exports = {
             headers: {
                 'Authorization': 'ZOU1hW49udPsua96Vw7NJUCUCbRe1cFMtcTrHJtPFnM',
             },
-            hostname: 'avwx.rest',
-            path: `/api/metar/${ap}?options=&airport=true&reporting=true&format=json&onfail=cache`,
+            url: `avwx.rest/api/metar/${ap}`,
             method: 'GET'
         };
-        const req = https.request(options, res => {
-            console.log(`statusCode: ${res.statusCode}`);
-            res.on('data', d => {
-                f = JSON.parse(d);
-            });
+
+        await axios.get(`https://avwx.rest/api/metar/${ap}`, options)
+        .then(function (response) {
+            f = response.data.sanitized;
+        })
+        .catch(function(err) {
+            console.error(err);
+            f = "request error or something idk";
         });
-        req.on('error', error => {
-            console.error(error);
-        });
-        req.end();
+        // const req = https.request(options, res => {
+        //     console.log(`statusCode: ${res.statusCode}`);
+        //     res.on('data', d => {
+        //         f = JSON.parse(d);
+        //     });
+        // });
+        // req.on('error', error => {
+        //     console.error(error);
+        // });
+        // req.end();
         
-        await message.channel.send(f.sanitized);
+        await message.channel.send(f);
     }
 }
