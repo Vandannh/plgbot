@@ -11,7 +11,7 @@ module.exports = {
                 .then(connection => {
                     const dispatcher = connection.playFile(require('path').join(__dirname, '../../files/airhorn.mp3'));
                     dispatcher.on('start', start => {
-                        dispatcher.setVolume(0.5);
+                        dispatcher.setVolume(0.1);
                     })
                     dispatcher.on('end', end => {
                         message.member.voiceChannel.leave();
